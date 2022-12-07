@@ -1,6 +1,4 @@
 buildscript {
-    
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -41,12 +39,11 @@ allprojects {
 project(":desktop") {
     apply plugin: "java-library"
 
-
     dependencies {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        
+
     }
 }
 
@@ -69,9 +66,13 @@ project(":android") {
 project(":core") {
     apply plugin: "java-library"
 
-
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
+        api 'com.github.Ryuu-64:Functional:0.2.0'
+        // https://mvnrepository.com/artifact/org.projectlombok/lombok
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+        // https://stackoverflow.com/questions/50519138/annotationprocessor-gradle-4-7-configuration-doesnt-run-lombok
+        //noinspection AnnotationProcessorOnCompilePath
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     }
 }
